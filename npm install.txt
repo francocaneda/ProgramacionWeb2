@@ -1,0 +1,9 @@
+iconos:
+
+npm i bootstrap bootstrap-icons
+
+
+bostrap 5
+
+
+npm i bootstrap@5

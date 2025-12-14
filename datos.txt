@@ -1,0 +1,5 @@
+Email	prueba.new@foro.com
+Contraseña	testuser
+
+admin@admin.com
+admin123

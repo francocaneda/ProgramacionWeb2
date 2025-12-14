@@ -1,0 +1,299 @@
+/* ===== Scope del IndexForo ===== */
+.foro-scope {
+  /* NO seteamos body/background aquí para no tapar tu fondo global */
+  padding: 20px 20px 40px;
+  color: #ffffff;
+}
+
+/* Container */
+.foro-scope .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===== Carrusel ===== */
+.foro-scope .carousel {
+  position: relative; /* contexto para z-index de controles */
+  max-width: 100%;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 20px;
+  margin-bottom: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+.foro-scope .carousel:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+}
+.foro-scope .carousel-inner {
+  border-radius: 20px;
+  overflow: hidden;
+  height: 100%;
+}
+.foro-scope .carousel-item { height: 100%; }
+
+.foro-scope .slice-container {
+  height: 100%;
+  background: transparent !important;
+  position: relative;
+}
+
+/* aseguran clics visibles */
+.foro-scope .carousel-indicators,
+.foro-scope .carousel-control-prev,
+.foro-scope .carousel-control-next {
+  z-index: 5;
+}
+
+/* Slice 1 */
+.foro-scope .slice1 {
+  background: transparent;
+  position: relative;
+  height: 100%;
+  display: flex; align-items: center; justify-content: center;
+}
+.foro-scope .slice1::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 30% 70%, rgba(100, 179, 244, 0.2) 0%, transparent 70%);
+  pointer-events: none; /* no tapa clics */
+}
+.foro-scope .slice1-content {
+  text-align: center; color: white; z-index: 2; position: relative;
+}
+.foro-scope .slice1-title {
+  font-size: 3.5rem; font-weight: 900; margin-bottom: 20px;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(45deg, #64b3f4, #c2e9fb, #a1c4fd);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fadeInUp 1s ease-in-out;
+}
+.foro-scope .slice1-subtitle {
+  font-size: 1.3rem; opacity: 0.9; font-weight: 300;
+  max-width: 600px; margin: 0 auto; color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+.foro-scope .slice1-icon {
+  position: absolute; top: 50px; right: 60px; font-size: 4rem; opacity: .3;
+  animation: float 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(100, 179, 244, 0.5));
+}
+
+/* Slice 2 */
+.foro-scope .slice2 {
+  background: transparent; position: relative; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+}
+.foro-scope .slice2::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 70% 30%, rgba(255, 107, 107, 0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+.foro-scope .slice2-content {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; padding: 0 60px; z-index: 2; position: relative;
+}
+.foro-scope .slice2-text { flex: 1; color: #ffffff; }
+.foro-scope .slice2-title {
+  font-size: 2.8rem; font-weight: 800; margin-bottom: 20px; color: #ff6b6b;
+  text-shadow: 0 2px 10px rgba(255, 107, 107, 0.5);
+}
+.foro-scope .slice2-subtitle {
+  font-size: 1.2rem; opacity: 0.9; max-width: 400px; line-height: 1.6; color: #ffffff;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+}
+.foro-scope .slice2-graphic {
+  flex: 1; display: flex; justify-content: center; align-items: center; position: relative;
+}
+.foro-scope .slice2-card {
+  background: rgba(255, 255, 255, 0.95); border-radius: 15px; padding: 30px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4); transform: rotate(-5deg);
+  animation: cardFloat 4s ease-in-out infinite;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Stats */
+.foro-scope .about-stats {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+}
+.foro-scope .stat-card {
+  background: linear-gradient(135deg, #64b3f4, #c2e9fb); color: #1a1a2e;
+  padding: 25px; border-radius: 15px; text-align: center;
+  transform: translateY(0); transition: all 0.3s ease;
+  box-shadow: 0 10px 25px rgba(100, 179, 244, 0.3);
+}
+.foro-scope .stat-card:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 20px 40px rgba(100, 179, 244, 0.5);
+}
+.foro-scope .stat-number { font-size: 2.5rem; font-weight: bold; margin-bottom: 10px; color: #1a1a2e; }
+.foro-scope .stat-label  { font-size: 1rem; opacity: .8; color: #1a1a2e; font-weight: 600; }
+
+/* Slice 3 */
+.foro-scope .slice3 {
+  background: transparent; position: relative; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+}
+.foro-scope .slice3::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(168, 237, 234, 0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+.foro-scope .slice3-content { text-align: center; color: #ffffff; z-index: 2; position: relative; }
+.foro-scope .slice3-badge {
+  background: rgba(255, 255, 255, 0.9); color: #3498db; padding: 8px 20px; border-radius: 25px;
+  font-size: .9rem; font-weight: 600; margin-bottom: 25px; display: inline-block;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+.foro-scope .slice3-subtitle {
+  font-size: 1.2rem; opacity: .9; max-width: 500px; margin: 0 auto; line-height: 1.6; color: #ffffff;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+}
+.foro-scope .slice3-icons {
+  position: absolute; top: 30px; left: 50px; display: flex; gap: 20px; opacity: 0.4;
+}
+.foro-scope .slice3-icon {
+  font-size: 2.5rem; animation: bounce 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 15px rgba(168, 237, 234, 0.5));
+}
+.foro-scope .slice3-icon:nth-child(2) { animation-delay: .5s; }
+.foro-scope .slice3-icon:nth-child(3) { animation-delay: 1s; }
+
+/* Indicadores del carrusel */
+.foro-scope .carousel-indicators { bottom: 20px; }
+.foro-scope .carousel-indicators [data-bs-target] {
+  background-color: rgba(255,255,255,0.5); border-radius: 50%; width: 12px; height: 12px; margin: 0 5px;
+}
+.foro-scope .carousel-indicators .active { background-color: #64b3f4; }
+
+/* Controles */
+.foro-scope .carousel-control-prev,
+.foro-scope .carousel-control-next {
+  background: rgba(0,0,0,0.3); width: 50px; height: 50px; border-radius: 50%;
+  top: 50%; transform: translateY(-50%); margin: 0 15px; transition: all .3s ease;
+}
+.foro-scope .carousel-control-prev:hover,
+.foro-scope .carousel-control-next:hover { background: rgba(0,0,0,0.6); }
+.foro-scope .carousel-control-prev-icon,
+.foro-scope .carousel-control-next-icon { filter: invert(1); }
+
+/* ===== Secciones ===== */
+.foro-scope .section {
+  margin-bottom: 40px; background: rgba(255,255,255,0.05); border-radius: 20px; padding: 40px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3); backdrop-filter: blur(15px);
+  border: 1px solid rgba(255,255,255,0.1); transition: all .3s ease; position: relative;
+  animation: fadeInUp .8s ease forwards;
+}
+.foro-scope .section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+}
+.foro-scope .section::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(45deg, transparent, rgba(100,179,244,0.1), transparent);
+  opacity: 0; transition: opacity .3s ease; border-radius: 20px; pointer-events: none;
+}
+.foro-scope .section:hover::before { opacity: 1; }
+
+.foro-scope .section-title {
+  font-size: 2.5rem; color: #ffffff; text-align: center; padding-bottom: 20px; margin-bottom: 40px;
+  background: linear-gradient(45deg, #64b3f4, #c2e9fb, #a1c4fd);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 10px rgba(100, 179, 244, 0.3);
+}
+
+/* Features */
+.foro-scope .features-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px; margin-top: 40px;
+}
+.foro-scope .feature-card {
+  background: rgba(255,255,255,0.05); padding: 30px; border-radius: 15px; text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2); transition: all .3s ease;
+  border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px);
+}
+.foro-scope .feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(100,179,244,0.3);
+  border-color: rgba(100,179,244,0.3);
+}
+.foro-scope .feature-icon { font-size: 3rem; margin-bottom: 20px;
+  filter: drop-shadow(0 5px 15px rgba(100,179,244,0.3));
+}
+.foro-scope .feature-title { font-size: 1.3rem; color: #ffffff; margin-bottom: 15px; font-weight: 600; }
+.foro-scope .feature-description { color: #e2e8f0; line-height: 1.6; }
+
+/* Miembros antiguos */
+.foro-scope .oldest-members-grid {
+  display: flex; justify-content: space-around; gap: 30px; flex-wrap: wrap; margin-top: 30px;
+}
+.foro-scope .member-card {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 15px; padding: 25px; text-align: center;
+  flex: 1 1 250px; max-width: 300px; transition: transform .3s ease, box-shadow .3s ease;
+  backdrop-filter: blur(10px);
+}
+.foro-scope .member-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(100,179,244,0.2); }
+.foro-scope .member-avatar { font-size: 3rem; margin-bottom: 15px;
+  filter: drop-shadow(0 5px 10px rgba(100,179,244,0.3)); padding: 20px 0;
+}
+.foro-scope .member-name { font-size: 1.2rem; color: #ffffff; margin-bottom: 5px; font-weight: 600; }
+.foro-scope .member-info { font-size: .95rem; color: #a0aec0; margin: 0; }
+
+/* Acordeón Bootstrap (si lo usas) */
+.foro-scope .accordion-button {
+  background-color: transparent !important; color: #ffffff; font-weight: 600; font-size: 1.2rem;
+  box-shadow: none; padding: 1rem 1.25rem; border: none;
+  transition: color .3s ease, background .3s ease;
+}
+.foro-scope .accordion-button:not(.collapsed) {
+  background-color: transparent !important; color: #64b3f4; box-shadow: none;
+}
+.foro-scope .accordion-button::after { filter: invert(1); }
+.foro-scope .accordion-body { background: transparent; padding: 1rem 1.5rem; color: #ffffff; border-radius: 10px; }
+.foro-scope .accordion-item { background: transparent; border: none; }
+
+.foro-scope .subcat-list { list-style: none; padding-left: 0; }
+.foro-scope .subcat-list li { margin-bottom: 10px; }
+.foro-scope .subcat-list a {
+  color: #64b3f4; text-decoration: none; font-weight: 500; transition: color .3s ease, text-shadow .3s ease; font-size: 20px;
+}
+.foro-scope .subcat-list a:hover { color: #ffffff; text-shadow: 0 0 10px rgba(100,179,244,0.6); }
+
+.foro-scope .botonAdmin { text-decoration: none; }
+
+/* ===== Animaciones ===== */
+@keyframes float { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-10px) } }
+@keyframes cardFloat { 0%,100% { transform: rotate(-5deg) translateY(0) } 50% { transform: rotate(-5deg) translateY(-5px) } }
+@keyframes bounce { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-8px) } }
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .foro-scope .about-stats { grid-template-columns: 1fr; }
+  .foro-scope .section { padding: 25px; margin-bottom: 30px; }
+  .foro-scope .section-title { font-size: 2rem; }
+  .foro-scope .features-grid { grid-template-columns: 1fr; }
+  .foro-scope .stat-card { padding: 20px; }
+  .foro-scope .stat-number { font-size: 2rem; }
+  .foro-scope .slice1-title { font-size: 2.5rem; }
+  .foro-scope .slice2-title { font-size: 2rem; }
+  .foro-scope .slice2-content { flex-direction: column; text-align: center; gap: 30px; }
+  .foro-scope .slice2-graphic { flex: none; }
+  .foro-scope .slice2-card { transform: rotate(0deg); }
+}
+@media (max-width: 480px) {
+  .foro-scope { padding: 10px; }
+  .foro-scope .section { padding: 20px; }
+  .foro-scope .section-title { font-size: 1.8rem; }
+  .foro-scope .about-stats { gap: 15px; }
+  .foro-scope .feature-card { padding: 25px; }
+}

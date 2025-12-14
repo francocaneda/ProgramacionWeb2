@@ -1,0 +1,70 @@
+/* src/admin/AdminPanel.css */
+
+/* 1. Contenedor Principal y Carga */
+.admin-panel-container {
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #ffffff; /* Fondo blanco para el panel */
+    border: 1px solid #e0e0e0; /* Borde sutil */
+}
+
+.admin-loading-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh; /* Altura mínima para centrar el spinner */
+}
+
+/* 2. Título */
+.admin-panel-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #343a40; /* Gris oscuro para el título */
+    border-color: #ced4da !important; /* Color para el borde inferior */
+}
+
+/* 3. Tabla de Usuarios */
+.admin-users-table {
+    /* Sobrescribir estilos predeterminados para un diseño más limpio */
+    --bs-table-bg: #f8f9fa; /* Color de fondo base de la tabla (Bootstrap 5) */
+    --bs-table-striped-bg: #f0f3f6; /* Color de fondo para filas impares */
+    --bs-table-hover-bg: #e9ecef; /* Color de fondo al pasar el mouse */
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    overflow: hidden; /* Para que el borde redondeado funcione con la tabla */
+}
+
+.admin-users-table thead {
+    /* Personalización del encabezado oscuro */
+    background-color: #343a40; /* Fondo negro / gris oscuro */
+    color: #ffffff;
+    letter-spacing: 0.05em; /* Espaciado sutil para las letras */
+}
+
+.admin-users-table th,
+.admin-users-table td {
+    padding: 12px 15px; /* Relleno uniforme */
+    border-color: #dee2e6;
+}
+
+/* Estilo para las insignias (badges) dentro de la tabla */
+.badge {
+    min-width: 60px;
+    padding: 0.4em 0.8em;
+    font-weight: 600;
+    border-radius: 0.35rem;
+}
+
+/* 4. Botón de Eliminar */
+.admin-delete-btn {
+    /* Estilo Outline para que no sea tan intrusivo */
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+}
+
+.admin-delete-btn:hover {
+    background-color: #dc3545;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3); /* Sombra al pasar el ratón */
+}
