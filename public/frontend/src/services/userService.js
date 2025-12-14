@@ -34,6 +34,24 @@ const userService = {
     return res.data;
   },
 
+    // CAMBIAR ROL DE USUARIO (ADMIN)
+  cambiarRol: async (id_usuario, rol) => {
+    const token = localStorage.getItem('authToken');
+
+    const res = await apiClient.put(
+      `/api/usuarios/${id_usuario}/rol`,
+      { rol },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    );
+
+    return res.data;
+  },
+
+
   register: async (payload) => {
     // POST http://localhost:8012/api/user
     const res = await apiClient.post('/api/usuarios', payload);
