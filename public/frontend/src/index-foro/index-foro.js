@@ -139,14 +139,6 @@ export default function IndexForo({ estaLogueado = true }) {
                         <div className="stat-number">{totalPosts}</div>
                         <div className="stat-label">Publicaciones</div>
                       </div>
-                      <div className="stat-card">
-                        <div className="stat-number">{totalComentarios}</div>
-                        <div className="stat-label">Interacciones</div>
-                      </div>
-                      <div className="stat-card">
-                        <div className="stat-number">24/7</div>
-                        <div className="stat-label">Comunidad Activa</div>
-                      </div>
                     </div>
                   </div>
                 </div>
