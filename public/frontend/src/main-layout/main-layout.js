@@ -1,10 +1,9 @@
-// frontend/src/main-layout/main-layout.js (Código Completo)
-
 import { useContext } from 'react';
 import { Outlet, Navigate } from "react-router-dom";
-import { AuthContext } from '../context/AuthContext'; // ⬅️ Importamos el contexto
-import Navbar from "../navbar/navbar"; // ⬅️ Asumo esta ruta de importación
+import { AuthContext } from '../context/AuthContext';
+import Navbar from "../navbar/navbar"; 
 import Footer from "../footer/footer"; 
+import "./main-layout.css";
 
 export default function MainLayout() {
     // 1. Obtener el estado global, el usuario, la carga y la función de logout

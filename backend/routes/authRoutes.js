@@ -9,6 +9,8 @@ router.post('/forgot-password', authController.forgotPassword);
 router.post('/reset-password', authController.resetPassword);
 router.get('/perfil', authMiddleware.protectRoute, authController.getPerfil);
 router.patch('/login', authMiddleware.protectRoute, authController.patchLogin);
+router.patch('/perfil', authMiddleware.protectRoute, authController.patchPerfil);
+
 
 // Obtener datos del usuario logueado (nombre, email, rol)
 router.get('/me', authMiddleware.protectRoute, async (req, res) => {

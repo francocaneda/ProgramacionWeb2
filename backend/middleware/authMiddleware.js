@@ -34,6 +34,7 @@ function protectRoute(req, res, next) {
         
         // 3. Adjuntar la información del payload al objeto request
         req.user = decoded; 
+
         
         // 4. Continuar con la ejecución de la ruta
         next(); 

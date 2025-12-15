@@ -37,7 +37,8 @@ app.use('/api', authRoutes);
 app.use('/api/posts', postsRoutes);
 
 // 3️⃣ Rutas de USUARIOS
-app.use('/api/usuarios', usuariosRoutes); // <--- NUEVO
+app.use('/api/usuarios', usuariosRoutes); 
+
 
 // 4️⃣ Categorías y otros comandos vía ?comando=
 app.get('/api', commandController.handleCommand);

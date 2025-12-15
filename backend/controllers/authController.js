@@ -129,6 +129,53 @@ exports.patchLogin = (req, res) => {
     res.status(200).json({ jwt: newToken });
 };
 
+// ------------------------------------
+// Función: patchPerfil (editar perfil)
+// ------------------------------------
+exports.patchPerfil = async (req, res) => {
+
+  
+  const userId = req.user?.uid || req.user?.id; 
+  if (!userId) return res.status(401).json({ message: 'ID de usuario no encontrado en el token.' });
+
+  if (Number(userId) === 1) {
+  return res.status(403).json({
+    message: "El administrador general del sistema (ID 1) no puede editar su perfil."
+  });
+}
+
+  const { nombre, apellido, user_nameweb, bio } = req.body;
+
+  // Validación mínima
+  if (!user_nameweb || !String(user_nameweb).trim()) {
+    return res.status(400).json({ message: 'El nombre de usuario es obligatorio.' });
+  }
+
+  const nombreCompleto = `${(nombre || '').trim()} ${(apellido || '').trim()}`.trim();
+
+  try {
+    // (Opcional pero recomendado) Validar username único
+    const exist = await executeQuery(
+      `SELECT id FROM usuarios WHERE user_nameweb = ? AND id != ?`,
+      [user_nameweb.trim(), userId]
+    );
+    if (exist?.length) {
+      return res.status(409).json({ message: 'Ese nombre de usuario ya está en uso.' });
+    }
+
+    await executeQuery(
+      `UPDATE usuarios
+       SET nombre_completo = ?, user_nameweb = ?, bio = ?
+       WHERE id = ?`,
+      [nombreCompleto, user_nameweb.trim(), bio ?? '', userId]
+    );
+
+    return res.json({ message: 'Perfil actualizado correctamente.' });
+  } catch (error) {
+    console.error('Error patchPerfil:', error);
+    return res.status(500).json({ message: 'Error interno del servidor al actualizar el perfil.' });
+  }
+};
 
 
 // ------------------------------------

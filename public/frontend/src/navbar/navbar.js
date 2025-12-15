@@ -1,3 +1,5 @@
+// frontend/src/navbar/navbar.js
+
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -165,155 +167,154 @@ export default function Navbar({
   };
 
   return (
-    <div id="main-wrapper">
-      <div className="modern-navbar">
-        <div className="navbar-container">
+    // CAMBIO CLAVE: Se eliminó el div #main-wrapper contenedor innecesario
+    <div className="modern-navbar">
+      <div className="navbar-container">
 
-          {/* Logo */}
-          <div className="logo-section">
-            <Link to="/foro" className="navbar-brand-link">
-              <img src="/foro.png" alt="ForoRandomUces" className="logo" />
-              <span className="brand-text">ForoRandomUces</span>
-            </Link>
+        {/* Logo */}
+        <div className="logo-section">
+          <Link to="/foro" className="navbar-brand-link">
+            <img src="/foro.png" alt="ForoRandomUces" className="logo" />
+            <span className="brand-text">ForoRandomUces</span>
+          </Link>
+        </div>
+
+        {/* Search */}
+        <div className="search-container d-none d-md-flex">
+          <div className="search-wrapper">
+            <input
+              type="text"
+              className="search-input"
+              placeholder="Busca una publicación..."
+              value={term}
+              onChange={(e) => setTerm(e.target.value)}
+              onFocus={handleSearchFocus}
+              onBlur={handleSearchBlur}
+              onKeyDown={handleKeyDown}
+            />
+            <i className="bi bi-search search-icon" />
           </div>
 
-          {/* Search */}
-          <div className="search-container d-none d-md-flex">
-            <div className="search-wrapper">
-              <input
-                type="text"
-                className="search-input"
-                placeholder="Busca una publicación..."
-                value={term}
-                onChange={(e) => setTerm(e.target.value)}
-                onFocus={handleSearchFocus}
-                onBlur={handleSearchBlur}
-                onKeyDown={handleKeyDown}
-              />
-              <i className="bi bi-search search-icon" />
-            </div>
+          <div className={`search-dropdown ${showSearch ? "show" : ""}`}>
+            {filteredPosts.map((p) => (
+              <div
+                key={p._id}
+                className="search-item"
+                onMouseDown={() => goToPost(p._id)}
+              >
+                {p._searchTitle || "(sin título)"}
+              </div>
+            ))}
 
-            <div className={`search-dropdown ${showSearch ? "show" : ""}`}>
-              {filteredPosts.map((p) => (
-                <div
-                  key={p._id}
-                  className="search-item"
-                  onMouseDown={() => goToPost(p._id)}
-                >
-                  {p._searchTitle || "(sin título)"}
-                </div>
-              ))}
+            {term.length > 0 && filteredPosts.length === 0 && (
+              <div className="search-item search-item-disabled">
+                No se encontraron publicaciones
+              </div>
+            )}
+          </div>
+        </div>
 
-              {term.length > 0 && filteredPosts.length === 0 && (
-                <div className="search-item search-item-disabled">
-                  No se encontraron publicaciones
-                </div>
+        {/* Acciones */}
+        <div className="nav-actions d-none d-md-flex">
+          <Link to="/main-layout/categorias" className="nav-btn btn-primary">
+            <i className="bi bi-list-task" />
+            <span>Categorías</span>
+          </Link>
+
+          <Link to="/main-layout/create-post" className="nav-btn btn-outline">
+            <i className="bi bi-plus-lg" />
+            <span>Crear Publicación</span>
+          </Link>
+        </div>
+
+        {/* Usuario */}
+        <div className="user-section">
+
+          {/* Notificaciones */}
+          <div className="notification-container" ref={notifRef}>
+            <button className="notification-btn" onClick={toggleNotifs}>
+              <i className="bi bi-bell-fill" />
+              {unreadCount > 0 && (
+                <span className="notification-badge">{unreadCount}</span>
+              )}
+            </button>
+
+            <div className={`notification-dropdown ${showNotifs ? "show" : ""}`}>
+              <h6 className="notification-header">Notificaciones</h6>
+
+              {notifications.length === 0 ? (
+                <div className="no-notifications">Sin notificaciones</div>
+              ) : (
+                notifications.map((n) => (
+                  <div
+                    key={n.id}
+                    className={`notification-item ${
+                      n.leido === 0 ? "notification-new" : ""
+                    }`}
+                    onClick={() => handleClickNotif(n)}
+                  >
+                    <div className="notification-message">
+                      {n.usuario_origen}:{" "}
+                      <span
+                        dangerouslySetInnerHTML={{ __html: n.mensaje }}
+                      />
+                    </div>
+                    <div className="notification-date">{n.fecha_envio}</div>
+                  </div>
+                ))
               )}
             </div>
           </div>
 
-          {/* Acciones */}
-          <div className="nav-actions d-none d-md-flex">
-            <Link to="/main-layout/categorias" className="nav-btn btn-primary">
-              <i className="bi bi-list-task" />
-              <span>Categorías</span>
-            </Link>
-
-            <Link to="/main-layout/create-post" className="nav-btn btn-outline">
-              <i className="bi bi-plus-lg" />
-              <span>Crear Publicación</span>
-            </Link>
-          </div>
-
-          {/* Usuario */}
-          <div className="user-section">
-
-            {/* Notificaciones */}
-            <div className="notification-container" ref={notifRef}>
-              <button className="notification-btn" onClick={toggleNotifs}>
-                <i className="bi bi-bell-fill" />
-                {unreadCount > 0 && (
-                  <span className="notification-badge">{unreadCount}</span>
-                )}
-              </button>
-
-              <div className={`notification-dropdown ${showNotifs ? "show" : ""}`}>
-                <h6 className="notification-header">Notificaciones</h6>
-
-                {notifications.length === 0 ? (
-                  <div className="no-notifications">Sin notificaciones</div>
-                ) : (
-                  notifications.map((n) => (
-                    <div
-                      key={n.id}
-                      className={`notification-item ${
-                        n.leido === 0 ? "notification-new" : ""
-                      }`}
-                      onClick={() => handleClickNotif(n)}
-                    >
-                      <div className="notification-message">
-                        {n.usuario_origen}:{" "}
-                        <span
-                          dangerouslySetInnerHTML={{ __html: n.mensaje }}
-                        />
-                      </div>
-                      <div className="notification-date">{n.fecha_envio}</div>
-                    </div>
-                  ))
-                )}
+          {/* Menú usuario */}
+          <div className="user-dropdown" ref={userMenuRef}>
+            <button className="user-trigger" onClick={toggleUserMenu}>
+              <i className="bi bi-person-circle user-avatar-icon" />
+              <div className="user-info d-none d-md-block">
+                <div className="user-name">{userName}</div>
+                <div className="user-role">{role}</div>
               </div>
-            </div>
+              <i className="bi bi-chevron-down" />
+            </button>
 
-            {/* Menú usuario */}
-            <div className="user-dropdown" ref={userMenuRef}>
-              <button className="user-trigger" onClick={toggleUserMenu}>
-                <i className="bi bi-person-circle user-avatar-icon" />
-                <div className="user-info d-none d-md-block">
-                  <div className="user-name">{userName}</div>
-                  <div className="user-role">{role}</div>
-                </div>
-                <i className="bi bi-chevron-down" />
-              </button>
+            <ul
+              className={`dropdown-menu dropdown-menu-end modern-dropdown ${
+                showUserMenu ? "show" : ""
+              }`}
+            >
+              <li>
+                <Link
+                  to="/main-layout/profile"
+                  className="dropdown-item modern-dropdown-item"
+                  onClick={() => setShowUserMenu(false)}
+                >
+                  <i className="bi bi-person-lines-fill" /> Perfil
+                </Link>
+              </li>
 
-              <ul
-                className={`dropdown-menu dropdown-menu-end modern-dropdown ${
-                  showUserMenu ? "show" : ""
-                }`}
-              >
+              {isAdmin && (
                 <li>
                   <Link
-                    to="/main-layout/profile"
-                    className="dropdown-item modern-dropdown-item"
+                    to="/main-layout/admin"
+                    className="dropdown-item modern-dropdown-item text-danger botonAdmin"
                     onClick={() => setShowUserMenu(false)}
                   >
-                    <i className="bi bi-person-lines-fill" /> Perfil
+                    <i className="bi bi-people-fill" /> Panel de usuarios
                   </Link>
                 </li>
+              )}
 
-                {isAdmin && (
-                  <li>
-                    <Link
-                      to="/main-layout/admin"
-                      className="dropdown-item modern-dropdown-item text-danger botonAdmin"
-                      onClick={() => setShowUserMenu(false)}
-                    >
-                      <i className="bi bi-people-fill" /> Panel de usuarios
-                    </Link>
-                  </li>
-                )}
-
-                <li>
-                  <button
-                    className="dropdown-item modern-dropdown-item"
-                    onClick={handleLogout}
-                  >
-                    <i className="bi bi-box-arrow-left" /> Cerrar sesión
-                  </button>
-                </li>
-              </ul>
-            </div>
-
+              <li>
+                <button
+                  className="dropdown-item modern-dropdown-item"
+                  onClick={handleLogout}
+                >
+                  <i className="bi bi-box-arrow-left" /> Cerrar sesión
+                </button>
+              </li>
+            </ul>
           </div>
+
         </div>
       </div>
     </div>

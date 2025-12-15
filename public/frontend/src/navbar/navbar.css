@@ -11,21 +11,27 @@
 }
 
 .modern-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 3000;
   background: #ffffff;
   border-bottom: 1px solid #e5e7eb;
+  border-radius: 15px;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
-  position: static;
   width: 100%;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   animation: navbarSlideIn 0.5s ease-out;
 }
 
+
 .navbar-container {
   max-width: 100%;
   margin: 0;
   padding: 0 2rem;
+  border-radius: 15px;
   display: flex;
   align-items: center;
+  border-radius: 20px;
   justify-content: space-between;
   height: 80px;
 }
@@ -284,4 +290,10 @@
   padding-left: 36px !important;
 }
 
+/* Evita recortes del navbar y de sus sombras/dropdowns */
+#main-wrapper,
+.modern-navbar,
+.navbar-container {
+  overflow: visible !important;
+}
 

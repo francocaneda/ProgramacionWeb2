@@ -11,7 +11,6 @@ body {
 /* ===== CONTENEDOR PRINCIPAL (igual que login) ===== */
 .regis-wrapper {
   min-height: 100vh;
-  /* Overlay sutil para mejorar contraste sobre el mural */
   background: radial-gradient(60% 50% at 70% 40%, transparent 20%, rgba(0,0,0,.18) 100%);
   display: flex;
   align-items: center;
@@ -23,7 +22,6 @@ body {
 }
 
 .regis-wrapper::before {
-  /* capa opcional para viñeta suave (no tapa la imagen global) */
   content: "";
   position: absolute;
   inset: 0;
@@ -51,12 +49,11 @@ body {
 .regis-card-wrapper { 
   position: relative; 
   width: 100%; 
-  max-width: 800px; /* más ancho que el login para el registro */
+  max-width: 800px;
   flex-shrink: 0; 
 }
 
 .card-glow {
-  /* glow más notorio para darle presencia a la card */
   position: absolute; inset: 0;
   background: linear-gradient(45deg, #4A90E2, #7fb6ff);
   border-radius: 1.5rem;
@@ -68,12 +65,12 @@ body {
 
 .regis-card {
   position: relative;
-  background: rgba(20,25,30,0.85);     /* más sólido/oscuro => mayor contraste */
+  background: rgba(20,25,30,0.85);
   backdrop-filter: blur(25px);
   border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 1.5rem;
   padding: 2.5rem;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75); /* sombra profunda */
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75);
   animation: slideInUp 0.6s ease-out;
   width: 100%;
 }
@@ -85,7 +82,6 @@ body {
 }
 
 .regis-avatar {
-  /* acento primario */
   width: 5rem; height: 5rem;
   background: linear-gradient(135deg, #4A90E2, #7fb6ff);
   border-radius: 50%;
@@ -108,7 +104,6 @@ body {
 }
 
 .regis-title {
-  /* acento en el título */
   font-size: 2rem;
   font-weight: 800;
   margin-bottom: 0.5rem;
@@ -160,21 +155,26 @@ body {
   grid-column: 1 / -1;
 }
 
+.regis-field-full {
+  grid-column: 1 / -1;
+}
+
 .regis-label {
   font-size: 0.9rem;
   font-weight: 600;
   color: #e9edf3;
 }
 
+/* ===== INPUTS (mismo estilo que login) ===== */
 .regis-input {
   width: 100%;
-  padding: 0.75rem 1rem;
+  padding: .75rem 1rem;
   background: rgba(255,255,255,.10);
   border: 2px solid rgba(255,255,255,.24);
-  border-radius: 0.75rem;
+  border-radius: .75rem;
   color: white;
   font-size: 1rem;
-  transition: all 0.2s ease;
+  transition: all .2s ease;
   backdrop-filter: blur(10px);
 }
 
@@ -191,9 +191,29 @@ body {
 
 /* Textarea específico */
 .regis-textarea {
+  width: 100%;
+  padding: .75rem 1rem;
+  background: rgba(255,255,255,.10);
+  border: 2px solid rgba(255,255,255,.24);
+  border-radius: .75rem;
+  color: white;
+  font-size: 1rem;
+  transition: all .2s ease;
+  backdrop-filter: blur(10px);
   resize: vertical;
   min-height: 5rem;
   font-family: inherit;
+}
+
+.regis-textarea::placeholder {
+  color: #aeb8c4;
+}
+
+.regis-textarea:focus {
+  outline: none;
+  background: rgba(255,255,255,.14);
+  border-color: #5da5f0;
+  box-shadow: 0 0 0 3px rgba(93,165,240,.28);
 }
 
 /* ===== MANEJO DE ARCHIVOS ===== */
@@ -254,18 +274,79 @@ body {
   margin-top: 0.25rem;
 }
 
-/* ===== BOTÓN SUBMIT (igual que login) ===== */
+/* ===== CONTENEDOR DE ACCIONES ===== */
+.regis-actions {
+  display: flex;
+  gap: 1rem;
+  animation: fadeInUp 0.6s ease-out both;
+  animation-delay: 0.6s;
+}
+
+/* ===== BOTONES (mismo estilo que login) ===== */
+.regis-btn {
+  flex: 1;
+  background: linear-gradient(135deg, #4A90E2, #357ABD);
+  border: none;
+  color: white;
+  font-weight: 700;
+  padding: .8rem 1.5rem;
+  border-radius: .75rem;
+  box-shadow: 0 12px 28px rgba(74,144,226,.45);
+  cursor: pointer;
+  transition: all .2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
+.regis-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #5da5f0, #3f84c8);
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(74,144,226,.6);
+}
+
+.regis-btn:active:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.regis-btn:disabled {
+  background: linear-gradient(135deg, #3a3a3a, #555555);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Botón secundario */
+.regis-btn-secondary {
+  background: rgba(255,255,255,.10);
+  border: 2px solid rgba(255,255,255,.24);
+  box-shadow: none;
+}
+
+.regis-btn-secondary:hover:not(:disabled) {
+  background: rgba(255,255,255,.14);
+  border-color: #5da5f0;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(93,165,240,.3);
+}
+
+.regis-btn-secondary:active:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+/* Botón submit (compatibilidad) */
 .regis-submit {
   width: 100%;
   background: linear-gradient(135deg, #4A90E2, #357ABD);
   border: none;
   color: white;
   font-weight: 700;
-  padding: 1rem 1.5rem;
-  border-radius: 0.75rem;
+  padding: .8rem 1.5rem;
+  border-radius: .75rem;
   box-shadow: 0 12px 28px rgba(74,144,226,.45);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all .2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -289,6 +370,18 @@ body {
   background: linear-gradient(135deg, #3a3a3a, #555555);
   cursor: not-allowed;
   box-shadow: none;
+}
+
+/* ===== HINT (texto informativo) ===== */
+.regis-hint {
+  color: #aeb8c4;
+  font-size: 0.85rem;
+  text-align: center;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(255,255,255,.05);
+  border-radius: .75rem;
+  border: 1px solid rgba(255,255,255,.1);
 }
 
 /* ===== FOOTER ===== */
@@ -360,7 +453,8 @@ body {
     gap: 1.25rem;
   }
   
-  .regis-field-col2 {
+  .regis-field-col2,
+  .regis-field-full {
     grid-column: 1;
   }
   
@@ -379,6 +473,10 @@ body {
   }
   
   .glow-orb { width: 12rem; height: 12rem; }
+
+  .regis-actions {
+    flex-direction: column;
+  }
 }
 
 @media (max-width: 640px) {
@@ -403,12 +501,14 @@ body {
   }
   
   .regis-input,
+  .regis-textarea,
   .regis-file-trigger {
     padding: 0.625rem 0.875rem;
   }
   
+  .regis-btn,
   .regis-submit {
-    padding: 0.875rem 1.25rem;
+    padding: 0.7rem 1.1rem;
   }
   
   .regis-title {
