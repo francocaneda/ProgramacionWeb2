@@ -10,6 +10,8 @@ router.post('/reset-password', authController.resetPassword);
 router.get('/perfil', authMiddleware.protectRoute, authController.getPerfil);
 router.patch('/login', authMiddleware.protectRoute, authController.patchLogin);
 router.patch('/perfil', authMiddleware.protectRoute, authController.patchPerfil);
+router.patch('/change-password', authMiddleware.protectRoute, authController.changePasswordLogged);
+
 
 
 // Obtener datos del usuario logueado (nombre, email, rol)

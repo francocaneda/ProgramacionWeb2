@@ -52,12 +52,19 @@ const userService = {
   },
 
   updateProfile : async (payload) => {
-
-    console.log("Llego hasta aca");
     // POST http://localhost:8012/api/perfil
   const { data } = await apiClient.patch('/api/perfil', payload);
   return data;
 },
+
+updatePassword: async (currentPassword, newPassword) => {
+  const { data } = await apiClient.patch('/api/change-password', {
+    currentPassword,
+    newPassword
+  });
+  return data;
+},
+
 
   register: async (payload) => {
     // POST http://localhost:8012/api/user

@@ -10,6 +10,7 @@ import ForumCategories from "./category/category";
 import CreatePost from './create-post/create-post';
 import Profile from "./profile/profile";
 import AdminPanel from "./admin/AdminPanel";
+import ChangePassword from "./change-password/change-password"
 
 
 // 🚀 IMPORTAR POST LIST Y POST DETAIL
@@ -35,6 +36,8 @@ export default function AppRoutes() {
 
           {/* PERFIL */}
           <Route path="/main-layout/profile" element={<Profile />} />
+
+          <Route path="/main-layout/change-password" element={<ChangePassword />} />
 
           {/* CATEGORÍAS */}
           <Route path="/main-layout/categorias" element={<ForumCategories />} />

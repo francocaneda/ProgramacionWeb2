@@ -138,7 +138,7 @@ useEffect(() => {
       
       const token = getToken?.() || localStorage.getItem("authToken");
 
-      const isRootAdmin = Number(user?.uid) === 1;
+      
 
       const payload = {
         user_nameweb: form.userNameWeb,
@@ -229,7 +229,7 @@ useEffect(() => {
                 value={form.userNameWeb}
                 onChange={onChange}
                 onBlur={() => markTouched("userNameWeb")}
-                placeholder="Ej: Fran123"
+                placeholder="Nombre de Usuario del Foro"
               />
               {showError("userNameWeb") ? <div className="regis-error">{errors.userNameWeb}</div> : null}
             </div>

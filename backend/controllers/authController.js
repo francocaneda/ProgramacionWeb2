@@ -266,3 +266,54 @@ exports.resetPassword = async (req, res) => {
     return res.status(500).json({ message: 'Error reseteando contraseña' });
   }
 };
+
+// ------------------------------------
+// Función: changePasswordLogged
+// PATCH /api/password
+// Permite al usuario autenticado cambiar su contraseña. PIDE contraseña actual como seguridad
+// ------------------------------------
+exports.changePasswordLogged = async (req, res) => {
+  const userId = req.user.uid;
+  const { currentPassword, newPassword } = req.body;
+
+    if (Number(userId) === 1) {
+  return res.status(403).json({
+    message: "El administrador general del sistema no puede cambiar su contraseña"
+  });
+}
+
+  if (!currentPassword || !newPassword) {
+    return res.status(400).json({ message: "Datos incompletos." });
+  }
+
+  if (newPassword.length < 8) {
+    return res.status(400).json({ message: "La nueva contraseña debe tener al menos 8 caracteres." });
+  }
+
+  try {
+    const rows = await executeQuery(
+      "SELECT clave FROM usuarios WHERE id = ?",
+      [userId]
+    );
+
+    if (!rows.length) {
+      return res.status(404).json({ message: "Usuario no encontrado." });
+    }
+
+    const isValid = await bcrypt.compare(currentPassword, rows[0].clave);
+    if (!isValid) {
+      return res.status(400).json({ message: "La contraseña actual es incorrecta." });
+    }
+
+    const hashed = await bcrypt.hash(newPassword, 10);
+    await executeQuery(
+      "UPDATE usuarios SET clave = ? WHERE id = ?",
+      [hashed, userId]
+    );
+
+    return res.json({ message: "Contraseña actualizada correctamente." });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "Error al cambiar la contraseña." });
+  }
+};

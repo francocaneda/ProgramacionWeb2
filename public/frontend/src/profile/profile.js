@@ -176,7 +176,7 @@ export default function Profile() {
 
   // Manejadores de navegación
   const irCambiarContrasena = useCallback(() => {
-    navigate('/password-recup');
+    navigate('/main-layout/change-password');
   }, [navigate]);
 
   const irEditarPerfil = useCallback(() => {
@@ -261,15 +261,15 @@ export default function Profile() {
       {/* Botones de Acción */}
       <div className="action-buttons">
         <button className="action-btn" onClick={irEditarPerfil}> {/* (click) se convierte en onClick={} */}
-          <span>✏️</span>
+          
           Editar Perfil
         </button>
         <button type="button" className="action-btn secondary" onClick={irCambiarContrasena}>
-          <span>🔒</span>
+          
           Cambiar Contraseña
         </button>
         <button className="action-btn" onClick={viewSettings}>
-          <span>⚙️</span>
+          
           Configuración
         </button>
       </div>
@@ -280,7 +280,7 @@ export default function Profile() {
           <div className="settings-overlay" onClick={closeSettings}></div>
           <div className="settings-content">
             <div className="settings-header">
-              <h2 className="settings-title">🎨 Personalizar Apariencia</h2>
+              <h2 className="settings-title"> Personalizar Apariencia</h2>
               <button className="close-btn" onClick={closeSettings}>&times;</button>
             </div>
             
